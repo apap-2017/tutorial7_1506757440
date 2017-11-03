@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/fragment :: headerFragment(pageTitle='View All Students')">    
+    </head>
+    <link rel="stylesheet" href="/css/datatables.min.css"/>
+	<link rel = "stylesheet" href ="/css/bootstrap.min.css"/>
+    <body>
+        <h1>All Students</h1>
+       	<table id="studentsTable" class="display" width="100%">
+       		<thead>
+       			<tr>
+       				<th>No</th>
+       				<th>NPM</th>
+       				<th>Name</th>
+       				<th>GPA</th>
+       				<th>Cum Laude</th>
+       				<th>Delete</th>
+       				<th>Update</th>
+       			</tr>
+       		</thead>
+       		<tbody>
+       			<tr th:each="student, iterationStatus: ${students}">
+       				<td th:text="${iterationStatus.count}">No</td>
+       				<td th:text="${student.npm}"></td>
+       				<td th:text="${student.name}"></td>
+       				<td th:text="${student.gpa}"></td>
+       				<td th:if="${student.gpa>=3.49}">Ya</td>
+       				<td th:unless="${student.gpa>=3.49}">Tidak</td>
+       				<td><a th:href="'/student/delete/' + ${student.npm}">Delete Data</a></td>
+	 		      	<td><a th:href="'/student/update/' + ${student.npm}">Update Data</a></td>
+       			</tr>
+       		</tbody>
+       	</table>
+       	<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="/js/datatables.min.js"></script>
+		<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+ 		<script>
+	       	$(document).ready(function(){
+	       	    $('#studentsTable').DataTable();
+	       	});
+       	</script>
+    </body>
+</html>
