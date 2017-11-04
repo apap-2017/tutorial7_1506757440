@@ -79,7 +79,7 @@ public class StudentController
         }
     }
     
-    @RequestMapping("/courses/view/{id}")
+    @RequestMapping("/course/view/{id}")
     public String viewCoursePath (Model model, @PathVariable(value = "id") String id) {
     	CourseModel course = studentDAO.selectCourse(id);
     	if(course != null) {

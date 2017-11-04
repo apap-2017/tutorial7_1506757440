@@ -17,14 +17,14 @@ public class CourseDAOImpl implements CourseDAO {
 	@Override
 	public CourseModel selectCourse(String id) {
 		// TODO Auto-generated method stub
-		CourseModel course = restTemplate.getForObject("http://localhost:8080/rest/courses/view" + id, CourseModel.class);
+		CourseModel course = restTemplate.getForObject("http://localhost:8080/rest/course/view/" + id, CourseModel.class);
 		return course;
 	}
 
 	@Override
 	public List<CourseModel> selectAllCourses() {
 		// TODO Auto-generated method stub
-		List<CourseModel> courses = restTemplate.getForObject("http://localhost:8080/rest/courses/viewall", List.class);
+		List<CourseModel> courses = restTemplate.getForObject("http://localhost:8080/rest/course/viewall", List.class);
 		return courses;
 	}
 }

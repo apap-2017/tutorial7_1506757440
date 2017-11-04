@@ -27,13 +27,11 @@ public class StudentController
         return "index";
     }
 
-
     @RequestMapping("/student/add")
     public String add ()
     {
         return "form-add";
     }
-
 
     @RequestMapping("/student/add/submit")
     public String addSubmit (
@@ -46,7 +44,6 @@ public class StudentController
 
         return "success-add";
     }
-
 
     @RequestMapping("/student/view")
     public String view (Model model,
@@ -63,7 +60,6 @@ public class StudentController
         }
     }
 
-
     @RequestMapping("/student/view/{npm}")
     public String viewPath (Model model,
             @PathVariable(value = "npm") String npm)
@@ -78,19 +74,6 @@ public class StudentController
             return "not-found";
         }
     }
-    
-    @RequestMapping("/courses/view/{id}")
-    public String viewCoursePath (Model model, @PathVariable(value = "id") String id) {
-    	CourseModel course = studentDAO.selectCourse(id);
-    	if(course != null) {
-    		model.addAttribute("course", course);
-    		return "view-course";
-    	} else {
-    		model.addAttribute("id", id);
-    		return "course-not-found";
-    	}
-    }
-
 
     @RequestMapping("/student/viewall")
     public String view (Model model)
@@ -100,7 +83,6 @@ public class StudentController
 
         return "viewall";
     }
-
 
     @RequestMapping("/student/delete/{npm}")
     public String deletePath(Model model, @PathVariable(value = "npm") String npm)
@@ -126,7 +108,6 @@ public class StudentController
     	return "not-found";
     }
     
-    
 //    public String updateSubmit(@RequestParam(value = "npm", required = false) String npm,
 //   							 @RequestParam(value = "name", required = false) String name,
 //    							 @RequestParam(value = "gpa", required = false) double gpa) {
@@ -139,5 +120,24 @@ public class StudentController
     public String updateSubmit(StudentModel student) {
     	studentDAO.updateStudent(student);
     	return "success-update";
+    }
+    
+    @RequestMapping("/course/view/{id}")
+    public String viewCoursePath (Model model, @PathVariable(value = "id") String id) {
+    	CourseModel course = studentDAO.selectCourse(id);
+    	if(course != null) {
+    		model.addAttribute("course", course);
+    		return "view-course";
+    	} else {
+    		model.addAttribute("id", id);
+    		return "course-not-found";
+    	}
+    }
+    
+    @RequestMapping("/course/viewall")
+    public String viewAllCourses(Model model) {
+    	List<CourseModel> courses = studentDAO.selectAllCourses();
+    	model.addAttribute("courses", courses);
+    	return "viewall-course";
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import com.example.dao.CourseDAO;
 import com.example.dao.StudentDAO;
 import com.example.model.CourseModel;
 import com.example.model.StudentModel;
@@ -19,6 +20,9 @@ public class StudentServiceRest implements StudentService {
 
 	@Autowired
     private StudentDAO studentDAO;
+	
+	@Autowired
+	private CourseDAO courseDAO;
 	
 	@Override
 	public StudentModel selectStudent(String npm) {
@@ -55,7 +59,15 @@ public class StudentServiceRest implements StudentService {
 	@Override
 	public CourseModel selectCourse(String idCourse) {
 		// TODO Auto-generated method stub
-		return null;
+		log.info ("REST - select course with id {}", idCourse);
+		return courseDAO.selectCourse(idCourse);
+	}
+
+	@Override
+	public List<CourseModel> selectAllCourses() {
+		// TODO Auto-generated method stub
+		log.info ("REST - select all courses");
+		return courseDAO.selectAllCourses();
 	}
 
 }

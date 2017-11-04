@@ -17,14 +17,14 @@ public class CourseRestController {
 	@Autowired
 	StudentService studentService;
 	
-	@RequestMapping("/courses/view/{id}")
+	@RequestMapping("/course/view/{id}")
 	public CourseModel view(@PathVariable(value = "id") String id) {
 		CourseModel course = studentService.selectCourse(id);
 		
 		return course;
 	}
 	
-	@RequestMapping("/courses/viewall")
+	@RequestMapping("/course/viewall")
 	public List<CourseModel> view() {
 		List<CourseModel> courses = studentService.selectAllCourses();
 		

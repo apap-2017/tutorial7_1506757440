@@ -18,4 +18,6 @@ public interface StudentService
     void updateStudent(StudentModel student);
     
     CourseModel selectCourse (String idCourse);
+    
+	List<CourseModel> selectAllCourses();
 }
